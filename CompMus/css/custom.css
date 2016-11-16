@@ -1,0 +1,52 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300);
+
+body{
+    font-family: 'Roboto', sans-serif;
+	font-style:"Open Sans";
+    margin:0px;
+    padding:0px;
+}
+
+/* navbar */
+.navbar-default {
+    background-color:#009688;
+    width: :100%;
+    font-size:18px;
+}
+
+
+.navbar-header a{
+  font-size: 20px;
+
+}
+
+.navbar-default.collapse-navbar-collapse a{
+    color:black;
+    font-size:100px;
+}
+
+.row p:hover{
+    color:#26A69A
+}
+
+
+h2,h3{
+    text-align: center;
+    color:#26A69A;
+}
+
+
+.jumbotron h1{
+    font-family: 'Open Sans', sans-serif;
+    color:#0cc898;
+    text-align: center;
+
+}
+.jumbotron p{
+    color:black;
+    text-align: center;
+    
+}
+.jumbotron {
+	background-color: white ;
+}

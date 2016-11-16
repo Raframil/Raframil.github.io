@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:800i|Roboto" rel="stylesheet">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Computacao Musical</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/heroic-features.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/heroic-features.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+
+    <!-- Javascript Waves -->
+    <script src="js/waves/FileSaver.js"></script>
+    <script src="js/waves/SquareWave.js"></script>
+    <script src="js/waves/Silencio.js"></script>
+    <script src="js/waves/WhiteNoise.js"></script>
+    <script src="js/waves/SinWave.js"></script>
+    <script src="js/waves/SawtoothWave.js"></script>
+    <script src="js/waves/triangleWave.js"></script>
+
+</head>
+
+<body>
+
+<audio id="wNoise"
+<source src="audio/Wnoise.wav" type='audio/ogg; codecs=vorbis'>
+Your user agent does not support the HTML5 Audio element.
+</audio>
+
+<audio id="SquareWave"
+<source src="audio/SquareWave.wav" type='audio/ogg; codecs=vorbis'>
+Your user agent does not support the HTML5 Audio element.
+</audio>
+
+<audio id="SinWave"
+<source src="audio/SinWave.wav" type='audio/ogg; codecs=vorbis'>
+Your user agent does not support the HTML5 Audio element.
+</audio>
+
+<audio id="Sawtooth"
+<source src="audio/Sawtooth.wav" type='audio/ogg; codecs=vorbis'>
+Your user agent does not support the HTML5 Audio element.
+</audio>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default" role="navigation" style="margin-top:0px;">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://dcomp.ufsj.edu.br/~raframil/" style="color:white">Home</a>
+            </div>
+            
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#sobre" style="color:white">Sobre</a>
+                    </li>
+                    <li>
+                        <a href="#licenca" style="color:white">Licença</a>
+                    </li>
+                    <li>
+                        
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Jumbotron Header -->
+        <header class="jumbotron hero-spacer">
+            <h1>Computação Musical</h1>
+            <p style="padding-top:50px;">Computação Musical (CM) é um campo de pesquisa em ciência da computação com características multidisciplinares, voltado ao tratamento de elementos musicais por meio do computador. </p>
+            <p><a target="_blank" href="https://pt.wikipedia.org/wiki/Computa%C3%A7%C3%A3o_musical" class="btn btn-primary btn-large">Saiba mais</a>
+            </p>
+        </header>
+    </div>
+
+        <hr>
+
+        <!-- Title -->
+        <div class="row" style="padding-top:30px">
+            <div class="col-lg-12">
+                <center><h2>Ondas Sonoras</h2></center>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Page Features -->
+        <div class="row text-center">
+            <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <img src="img/silence.jpg" alt="silencio" height="800" width="500"">
+                    <div class="caption">
+                        <h3>Silêncio</h3>
+                        <p>Arquivo WAV gerador de silêncio.</p>
+                        <p>
+                            <button class="btn btn-primary" onclick="silentWave()">Download</button> 
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <img src="img/whitenoise.gif" alt="whitenoise"  height="800" width="500">
+                    <div class="caption">
+                        <h3>White Noise</h3>
+                        <p>Arquivo WAV gerador de ruído branco.</p>
+                        <p>
+                            <button class="btn btn-warning" onclick="wnoise()">Play/Pause</button> <button class="btn btn-primary" onclick="whiteNoise()">Download</button> <a target="_blank" href="https://pt.wikipedia.org/wiki/Ru%C3%ADdo_branco" class="btn btn-default">More Info</a> 
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <img src="img/squarewave.gif" alt="onda quadrada" >
+                    <div class="caption">
+                        <h3>Square Wave</h3>
+                        <p>Arquivo WAV gerador de onda quadrada.</p>
+                        <p>
+                            <button class="btn btn-warning" onclick="square()">Play/Pause</button> <button href="#" class="btn btn-primary" onclick="squareWave()">Download</button> <a target="_blank" href="https://pt.wikipedia.org/wiki/Onda_quadrada" class="btn btn-default">More Info</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <img src="img/sin.gif" alt="">
+                    <div class="caption">
+                        <h3>Sine Wave</h3>
+                        <p>Arquivo WAV gerador de onda senoide.</p>
+                        <p>
+                            <button class="btn btn-warning" onclick="sin()">Play/Pause</button> <button class="btn btn-primary" onclick="sinWave()">Download</button> <a target="_blank" href="https://pt.wikipedia.org/wiki/Senoide" class="btn btn-default">More Info</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        
+    
+        
+    
+    </div>
+
+    <!-- Page Features2 -->
+    <div class="row text-center">
+	        <div class="col-md-3 col-sm-6 hero-feature">
+	                <div class="thumbnail">
+	                    <img src="img/triangle.gif" alt="">
+	                    <div class="caption">
+	                        <h3>Triangle Wave</h3>
+	                        <p>Arquivo WAV gerador de onda triangular.</p>
+	                        <p>
+	                            <button class="btn btn-primary" onclick="triangleWave()">Download</button> <a target="_blank" href="https://pt.wikipedia.org/wiki/Senoide" class="btn btn-default">More Info</a>
+	                        </p>
+	                    </div>
+	                </div>
+	        </div>
+            
+      		<div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <img src="img/sawtooth.gif" alt="silencio" style="width:372px;height:200px;">
+                    <div class="caption">
+                        <h3>Sawtooth</h3>
+                        <p>Arquivo WAV gerador de onda dente de serra.</p>
+                        <p>
+                            <button class="btn btn-warning" onclick="saw()">Play/Pause</button> <button class="btn btn-primary" onclick="sawtoothWave()">Download</button> <a target="_blank" href="https://pt.wikipedia.org/wiki/Onda_dente_de_serra" class="btn btn-default">More Info</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <img src="http://placehold.it/800x500" alt="">
+                    <div class="caption">
+                        <h3>Feature</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        <p>
+                            <a href="#" class="btn btn-primary">Download</a> <a href="#" class="btn btn-default">More Info</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <img src="http://placehold.it/800x500" alt="">
+                    <div class="caption">
+                        <h3>Feature</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        <p>
+                            <a href="#" class="btn btn-primary">Download</a> <a href="#" class="btn btn-default">More Info</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.row -->
+    
+    	<hr>
+
+        <!-- Sobre -->
+        <div id="sobre" class="jumbotron">
+            <div class="container">
+                <h2>Sobre</h2>
+                    <p>Este trabalho foi feito utilizando Javascript para realizar as funções e gerar os arquivos das ondas no formato WAV.
+                        Para baixar e escutar os arquivos basta clicar no botão de Download referente a onda que você deseja.
+                        Caso queira um tempo maior de áudio, será necessário aumentar a variável numFrames no arquivo de Javascript referente a onda, exemplo: WhiteNoise.js -> <strong>var numFrames = 500000</strong>.</p>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- Sintetizador -->
+        <div>
+            <div class="container">
+                <h2>Sintetizador</h2>
+                    <a target="_blank" href="http://dcomp.ufsj.edu.br/~raframil/CompMus/piano"><img src="img/piano_web.png" style="width:100%"></img></a>
+            </div>
+        </div>
+
+        <hr>
+        
+        <!-- Liçensa -->
+        <div id="licenca" class="jumbotron">
+            <div class="container" style="text-align:center">
+                <h2>Licença</h2>
+                    <p>Foi utilizado alguns códigos de repositório do GITHub.</p>
+                    <p><a href="https://gist.github.com/also/900023" >WeaveHeader build</a></p>
+                <p><a href="http://purl.eligrey.com/github/FileSaver.js/blob/master/FileSaver.js">File Saver</a></p><p>By Eli Grey, http://eligrey.com  -- License: X11/MIT
+                    </p>
+                    <p><a href="https://github.com/keithwhor/audiosynth">Audio Synth</p></a>
+            </div>
+        </div>
+
+        <hr>
+		
+		<!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <center><p><strong>Rafael Framil</strong></p></center>
+                    <center><p><span class="glyphicon glyphicon-envelope"></span><br>raframil@gmail.com</p></center>
+                </div>
+            </div>
+        </footer>
+
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
+
+<script>
+
+function wnoise() {
+  var wNoise = document.getElementById("wNoise");
+  if (wNoise.paused) {
+    wNoise.play();
+  } else {
+    wNoise.pause();
+  }
+}
+function square() {
+  var SquareWave = document.getElementById("SquareWave");
+  if (SquareWave.paused) {
+    SquareWave.play();
+  } else {
+    SquareWave.pause();
+  }
+}
+function sin() {
+  var SinWave = document.getElementById("SinWave");
+  if (SinWave.paused) {
+    SinWave.play();
+  } else {
+    SinWave.pause();
+  }
+}
+function saw() {
+  var Sawtooth = document.getElementById("Sawtooth");
+  if (Sawtooth.paused) {
+    Sawtooth.play();
+  } else {
+    Sawtooth.pause();
+  }
+}
+
+</script>
+
+

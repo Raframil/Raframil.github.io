@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- FONTS -->
+<link href='http://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Amaranth:400,700italic' rel='stylesheet' type='text/css'>
+<!-- Jquery plugin -->
+<script language="JavaScript" type="text/javascript" src="js/jquery-3.1.1.js"></script>
+<!-- CSS -->
+<link href="css/piano.css" rel="stylesheet">
+<!-- JS Comportamento Piano -->
+<script src="js/piano.js"></script>
+<!-- Audio API -->
+<script src="js/audiosynth.js"></script>
+
+<title>Sintetizador</title>
+</head>
+
+<body>
+
+<h1>Sintetizador de Piano</h1>
+
+<div class="subtitle">Use o teclado ou o mouse para reproduzir <span>som</span></div>
+<div class="subtitle2">Atalhos: A S D F G H J</div>
+
+<div id="notas">
+	<p>C4 D4 E4 F4 G4 A4 B4</p>
+</div>
+
+<div id="keys">
+	<div id="a" class="box" onclick="C4()"></div>
+ 	<div id="s" class="box" onclick="D4()"></div>
+  	<div id="d" class="box" onclick="E4()"></div>
+  	<div id="f" class="box" onclick="F4()"></div>
+  	<div id="g" class="box" onclick="G4()"></div>
+  	<div id="h" class="box" onclick="A4()"></div>
+  	<div id="j" class="box" onclick="B4()"></div>
+</div>
+
+</body>
+
+
+</html>
+
+<script>
+
+function C4(){
+var piano = Synth.createInstrument('piano');
+piano.play('C', 4, 2); // plays C4 for 2s using the 'piano' sound profile
+}
+
+function D4(){
+var piano = Synth.createInstrument('piano');
+piano.play('D', 4, 2); // plays C4 for 2s using the 'piano' sound profile
+}
+
+function E4(){
+var piano = Synth.createInstrument('piano');
+piano.play('E', 4, 2); // plays C4 for 2s using the 'piano' sound profile
+}
+
+function F4(){
+var piano = Synth.createInstrument('piano');
+piano.play('F', 4, 2); // plays C4 for 2s using the 'piano' sound profile
+}
+
+function G4(){
+var piano = Synth.createInstrument('piano');
+piano.play('G', 4, 2); // plays C4 for 2s using the 'piano' sound profile
+}
+
+function A4(){
+var piano = Synth.createInstrument('piano');
+piano.play('A', 4, 2); // plays C4 for 2s using the 'piano' sound profile
+}
+
+
+function B4(){
+var piano = Synth.createInstrument('piano');
+piano.play('B', 4, 2); // plays C4 for 2s using the 'piano' sound profile
+}
+</script>
