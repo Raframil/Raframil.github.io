@@ -1,0 +1,250 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/blood.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+                <h1>Git e GitHub Pages</h1>
+                </section>
+                
+				<section>
+                <h3>Instalação</h3>
+                <ul>
+                    <li><a href="https://git-scm.com/download/linux">Baixe o git para Linux</a></li>
+                    <li><a href="https://git-for-windows.github.io/">Baixe o git para Windows</a></li>
+                    <li><a href="https://code.google.com/archive/p/git-osx-installer/downloads">Baixe o git para OSX</a></li>
+                </ul>
+                </section>
+                
+                <section>
+                <h3>Criando um novo repositório</h3>
+                    <hr>
+                    <p>Crie uma pasta, abra-a e execute:</p>
+                    <pre><code data-trim data-noescape>
+                        git init
+                    </code></pre>
+                    <p>para criar um novo repositório</p>
+                </section>
+                
+                <section>
+                <h3>Obtendo um repositório</h3>
+                    <hr>
+                    <p>Crie uma cópia de trabalho em um repositório local executando o comando:</p>
+                    <pre><code data-trim data-noescape>
+                        git clone /caminho/para/o/repositório
+                    </code></pre>
+                </section>
+                
+                <section>
+                <h3>Fluxo de trabalho</h3>
+                    <hr>
+                    <p>Seus repositórios locais consistem em três "árvores" mantidas pelo git. A primeira delas é sua Working Directory que contém os arquivos vigentes. A segunda é o Index, que funciona como uma área temporária. Finalmente temos a HEAD, que aponta para o último commit que você fez.</p>
+                </section>
+               
+                
+                <section data-background-image="img/fluxo.png" data-background-size="40%">
+                    <h3 style="margin-bottom:500px;">Workflow</h3>
+				</section>
+                
+                <section>
+                <h3>Adicionar</h3>
+                    <hr>
+                    <p>Você pode propor mudanças (adicioná-las ao Index) usando:</p>
+                    <pre><code data-trim data-noescape>
+                        git add "arquivo"  //adiciona um arquivo específico
+                    </code></pre>
+                    <pre><code data-trim data-noescape>
+                        git add *   //adiciona tudo ao stage
+                    </code></pre>
+                    <p>Podemos verificar o que foi adicionado/alterado com:</p>
+                    <pre><code data-trim data-noescape>
+                        git status
+                    </code></pre>
+                </section>
+                
+                <section>
+                <h3>Confirmando (commit)</h3>
+                    <hr>
+                    <p>Para realmente confirmar as mudanças feitas, use:</p>
+                    <pre><code data-trim data-noescape>
+                        git commit -m "comentários das alterações"
+                    </code></pre>
+                    <p>Finalmente temos nosso arquivo no HEAD, mas ainda não o temos no repositório remoto</p>
+                </section>
+                
+                <section>
+                <h3>Enviando alterações (push)</h3>
+                    <hr>
+                    <p>Para enviar estas alterações ao seu repositório remoto:</p>
+                    <pre><code data-trim data-noescape>
+                        git push origin master
+                    </code></pre>
+                    <p>Altere master para qualquer ramo (branch) desejado.</p>
+                </section>
+                
+                <section>
+                <h3>Ramificando</h3>
+                    <hr>
+                    <p>Branches ("ramos") são utilizados para desenvolver funcionalidades isoladas umas das outras. O branch master é o branch "padrão" quando você cria um repositório. Use outros branches para desenvolver e mescle-os (merge) ao branch master após a conclusão.</p>
+                    <img src="img/branch.png">
+                
+                </section>
+                
+                <section>
+                <h3>Criando Branches</h3>
+                    <hr>
+                <p>crie um novo branch chamado "funcionalidade_x" e selecione-o usando</p>
+                <pre><code data-trim data-noescape>
+                        git checkout -b funcionalidade_x
+                </code></pre>
+                <p>retorne para o master usando</p>
+                <pre><code data-trim data-noescape>
+                        git checkout master
+                </code></pre>
+                <p>e remova o branch da seguinte forma</p>
+                <pre><code data-trim data-noescape>
+                        git branch -d funcionalidade_x
+                </code></pre>
+                <p>um branch só estará disponível se usar</p>
+                <pre><code data-trim data-noescape>
+                       git push origin funcionalidade_x
+                </code></pre>
+                </section>
+                
+                <section>
+                <h3>atualizar & mesclar</h3>
+                    <hr>
+                    <p>para atualizar seu repositório local execute na sua pasta de trabalho</p>
+                    <pre><code data-trim data-noescape>
+                       git pull
+                    </code></pre>
+                    <p>para fazer merge de um outro branch ao seu branch ativo (ex. master)</p>
+                    <pre><code data-trim data-noescape>
+                       git merge "branch"
+                    </code></pre>
+                    <p>antes de fazer o merge das alterações, você pode também pré-visualizá-as</p>
+                    <pre><code data-trim data-noescape>
+                      git diff "branch origem" "branch destino"
+                    </code></pre>
+                    
+                </section>
+                
+                <section>
+                <h3>Rotulando</h3>
+                    <hr>
+                    <p>É recomendado criar rótulos para releases de software</p>
+                    <p>Você pode criar um novo rótulo chamado 1.0.0 executando</p>
+                     <pre><code data-trim data-noescape>
+                      git tag 1.0.0 1b2e1d63ff
+                    </code></pre>
+                    <p>o <a>1b2e1d63ff</a> representa os 10 primeiros caracteres do id de commit que você quer referenciar com seu rótulo. Você pode obter o id de commit com </p>
+                    <pre><code data-trim data-noescape>
+                      git log
+                    </code></pre>
+                    <p>você pode também usar menos caracteres do id de commit, ele somente precisa ser único.</p>
+                </section>
+                
+                <section>
+                <h3>Sobrescrever alterações locais</h3>
+                    <hr>
+                    <p>No caso de você ter feito algo errado você pode sobrescrever as alterações locais usando</p>
+                     <pre><code data-trim data-noescape>
+                      git checkout -- "arquivo"
+                    </code></pre>
+                    <p>isto substitui as alterações na sua árvore de trabalho com o conteúdo mais recente no HEAD. Alterações já adicionadas ao index, bem como novos arquivos serão mantidos.</p>
+                    
+                   
+                    
+                </section>
+            
+            <section>
+                <h3>Sobrescrever alterações locais</h3>
+                <hr>
+                 <p>Se ao invés disso você deseja remover todas as alterações e commits locais, recupere o histórico mais recente do servidor e aponte para seu branch master local desta forma</p>
+                    <pre><code data-trim data-noescape>
+                    git fetch origin
+git reset --hard origin/master
+                    </code></pre>
+            </section>
+                
+            <section>
+                <h3>Dica úteis</h3>
+                <hr>
+                <p>Inteface gráfica padrão</p>
+                <pre><code data-trim data-noescape>
+                    gitk
+                    </code></pre>
+                <p>Usar saídas do git coloridas</p>
+                <pre><code data-trim data-noescape>
+                   git config color.ui true
+                    </code></pre>
+                <p>Exibir log em apenas uma linha por commit</p>
+                <pre><code data-trim data-noescape>
+                    git config format.pretty oneline
+                    </code></pre>
+                <p>Fazer inclusões interativas</p>
+                <pre><code data-trim data-noescape>
+                    git add -i
+                    </code></pre>
+            </section>
+                
+            <section>
+            <h3>Links</h3>
+                <hr>
+                <ul>
+                <li><a href="https://www.git-tower.com/blog/git-cheat-sheet/">CheatSheet</a></li>
+                <li><a href="http://git-scm.com/book/pt-br/">Livro da comunidade Git</a></li>
+                <li><a href="http://marklodato.github.io/visual-git-guide/index-en.html">Ajuda Visual</a></li>
+                <li><a href="https://help.github.com/">Github Help</a></li>
+                    
+                   
+                </ul>
+                <p>Créditos</p>
+                <a href="http://rogerdudler.github.io/git-guide/index.pt_BR.html">Guia Prático</a></li> 
+            </section>
+                    
+                
+                
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
