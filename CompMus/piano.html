@@ -10,8 +10,6 @@
 <link href="css/piano2.css" rel="stylesheet">
 <!-- JS Comportamento Piano -->
 <script src="js/piano.js"></script>
-<!-- Audio API -->
-<script src="js/audiosynth.js"></script>
 
 <title>Sintetizador</title>
 </head>
@@ -28,13 +26,14 @@
 </div>
 
 <div id="keys">
-	<div id="a" class="box" onclick="C4()"></div>
- 	<div id="s" class="box" onclick="D4()"></div>
-  	<div id="d" class="box" onclick="E4()"></div>
-  	<div id="f" class="box" onclick="F4()"></div>
-  	<div id="g" class="box" onclick="G4()"></div>
-  	<div id="h" class="box" onclick="A4()"></div>
-  	<div id="j" class="box" onclick="B4()"></div>
+	<div id="a" class="box"></div>
+ 	<div id="s" class="box"></div>
+  	<div id="d" class="box"></div>
+  	<div id="f" class="box"></div>
+  	<div id="g" class="box"></div>
+  	<div id="h" class="box"></div>
+  	<div id="j" class="box"></div>
+    <div id="k" class="box"></div>
 </div>
 
     <!-- Waveform selector -->
@@ -76,9 +75,6 @@
         71: { noteName: 'g4', frequency: 392, keyName: 'g' },
         72: { noteName: 'a4', frequency: 440, keyName: 'h' },
         74: { noteName: 'b4', frequency: 493.9, keyName: 'j' },
-        75: { noteName: 'c5', frequency: 523.3, keyName: 'k' },
-        76: { noteName: 'd5', frequency: 587.3, keyName: 'l' },
-        186: { noteName: 'e5', frequency: 659.3, keyName: ';' }
     };
 
     function Key(noteName, keyName, frequency) {
@@ -87,7 +83,6 @@
 
         /* Style the key */
         keyHTML.className = 'key';
-        keyHTML.innerHTML = noteName + '<br><span>' + keyName + '</span>';
 
         return {
             html: keyHTML,
