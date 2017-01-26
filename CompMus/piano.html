@@ -54,6 +54,8 @@
 
 </html>
 
+<!-- Script para gerar o som a partir da API de WebAudio com base nas frequencias das notas musicais -->
+
 <script>
 
 (function() {
@@ -108,20 +110,18 @@
     };
 
     function createKeyboard(notes, containerId) {
-        var sortedKeys = []; // Placeholder for keys to be sorted
+        var sortedKeys = []; 
         var waveFormSelector = document.getElementById('soundType');
 
         for(var keyCode in notes) {
             var note = notes[keyCode];
 
-            /* Generate playable key */
             note.key = new Key(note.noteName, note.keyName, note.frequency);
 
-            /* Add new key to array to be sorted */
             sortedKeys.push(notes[keyCode]);
         }
 
-        /* Sort keys by frequency so that they'll be added to the DOM in the correct order */
+        /* Notas em ordem crescente */
         sortedKeys = sortedKeys.sort(function(note1, note2) {
             if (note1.frequency < note2.frequency) return -1;
             if (note1.frequency > note2.frequency) return 1;
@@ -129,7 +129,6 @@
             return 0;
         });
 
-        // Add those sorted keys to DOM
         for(var i = 0; i < sortedKeys.length; i++) {
             document.getElementById(containerId).appendChild(sortedKeys[i].key.html);
         }
@@ -138,10 +137,7 @@
             var keyCode = event.keyCode;
 
             if(typeof notesByKeyCode[keyCode] !== 'undefined') {
-                // Pipe sound to output (AKA speakers)
                 notesByKeyCode[keyCode].key.sound.play();
-
-                // Highlight key playing
                 notesByKeyCode[keyCode].key.html.className = 'key playing';
             }
         };
@@ -150,10 +146,7 @@
             var keyCode = event.keyCode;
 
             if(typeof notesByKeyCode[keyCode] !== 'undefined') {
-                // Kill connection to output
                 notesByKeyCode[keyCode].key.sound.stop();
-
-                // Remove key highlight
                 notesByKeyCode[keyCode].key.html.className = 'key';
             }
         };
@@ -163,11 +156,9 @@
                 notes[keyCode].key.sound.osc.type = this.value;
             }
 
-            // Unfocus selector so value is not accidentally updated again while playing keys
             this.blur();
         };
 
-        // Check for changes in the waveform selector and update all oscillators with the selected type
         waveFormSelector.addEventListener('change', setWaveform);
 
         window.addEventListener('keydown', playNote);
