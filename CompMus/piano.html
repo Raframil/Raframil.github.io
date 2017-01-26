@@ -56,17 +56,11 @@
 
 <script>
 
-/**
-* NOTE:
-* Some of the features of the  Web Audio API currently only work on Chrome, hence the 'webkit' prefix!
-*/
-
 (function() {
     // Create audio (context) container
     var audioCtx = new (AudioContext || webkitAudioContext)();
 
-    // Table of notes with correspending keyboard codes. Frequencies are in hertz.
-    // The notes start from middle C
+    // Tabela de notas com as frequencias em hertz
     var notesByKeyCode = {
         65: { noteName: 'c4', frequency: 261.6, keyName: 'a' },
         83: { noteName: 'd4', frequency: 293.7, keyName: 's' },
@@ -81,7 +75,6 @@
         var keyHTML = document.createElement('div');
         var keySound = new Sound(frequency, 'triangle');
 
-        /* Style the key */
         keyHTML.className = 'key';
 
         return {
@@ -91,20 +84,14 @@
     }
 
     function Sound(frequency, type) {
-        this.osc = audioCtx.createOscillator(); // Create oscillator node
-        this.pressed = false; // flag to indicate if sound is playing
+        this.osc = audioCtx.createOscillator(); // Cria um oscilador
+        this.pressed = false; // flag para verificar se está tocando ou não 
 
-        /* Set default configuration for sound */
+
         if(typeof frequency !== 'undefined') {
-            /* Set frequency. If it's not set, the default is used (440Hz) */
             this.osc.frequency.value = frequency;
         }
-
-        /* Set waveform type. Default is actually 'sine' but triangle sounds better :) */
         this.osc.type = type || 'triangle';
-
-        /* Start playing the sound. You won't hear it yet as the oscillator node needs to be
-        piped to output (AKA your speakers). */
         this.osc.start(0);
     };
 
