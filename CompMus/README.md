@@ -1,27 +1,16 @@
-# [Start Bootstrap](http://startbootstrap.com/) - [Heroic Features](http://startbootstrap.com/template-overviews/heroic-features/)
+# [Trabalhos de Computação Musical]
 
-[Heroic Features](http://startbootstrap.com/template-overviews/heroic-features/) is a multipurpose HTML template for [Bootstrap](http://getbootstrap.com/) created by [Start Bootstrap](http://startbootstrap.com/).
 
-## Getting Started
+## TP1
 
-To begin using this template, choose one of the following options to get started:
-* [Download the latest release on Start Bootstrap](http://startbootstrap.com/template-overviews/heroic-features/)
-* Clone the repo: `git clone https://github.com/BlackrockDigital/startbootstrap-heroic-features.git`
-* Fork the repo
+No primeiro trabalho prático a atividade era fazer um gerador de ondas que tenha como saída um arquivo wave.
+Os seguintes sinais foram gerados: silêncio, ruído branco, ondas senoidais, quadradas, triangulares e dente de serra.
 
-## Bugs and Issues
+## TP2
 
-Have a bug or an issue with this template? [Open a new issue](https://github.com/BlackrockDigital/startbootstrap-heroic-features/issues) here on GitHub or leave a comment on the [template overview page at Start Bootstrap](http://startbootstrap.com/template-overviews/heroic-features/).
+O segundo TP é a criação de um instrumento digital usando a API webaudio em Javascript.
 
-## Creator
+## TP3
 
-Start Bootstrap was created by and is maintained by **[David Miller](http://davidmiller.io/)**, Owner of [Blackrock Digital](http://blackrockdigital.io/).
+O terceiro TP de computação musical é a utilização de efeitos digitais em uma fonte sonora utilizando a API webaudio em Javascript. Esta fonte pode ser o microfone ou um arquivo Wave. É desejável que o usuário possa escolher alguns efeitos e configurá-lo por meio de uma interface.
 
-* https://twitter.com/davidmillerskt
-* https://github.com/davidtmiller
-
-Start Bootstrap is based on the [Bootstrap](http://getbootstrap.com/) framework created by [Mark Otto](https://twitter.com/mdo) and [Jacob Thorton](https://twitter.com/fat).
-
-## Copyright and License
-
-Copyright 2013-2016 Blackrock Digital LLC. Code released under the [MIT](https://github.com/BlackrockDigital/startbootstrap-heroic-features/blob/gh-pages/LICENSE) license.
