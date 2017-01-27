@@ -39,10 +39,10 @@
     <!-- Waveform selector -->
     <p>
         <label for="soundType">Waveform:</label> <select name="soundType" id="soundType">
-            <option value="sine" selected>Senoidal</option>
+            <option value="sine" >Senoidal</option>
             <option value="square">Quadrada</option>
             <option value="sawtooth">Dente de Serra</option>
-            <option value="triangle">Triangular</option>
+            <option value="triangle" selected>Triangular</option>
         </select>
     </p>
     <!-- Keyboard placeholder -->
@@ -65,8 +65,8 @@
     // Tabela de notas com as frequencias em hertz
     var notesByKeyCode = {
         65: { noteName: 'c4', frequency: 261.6, keyName: 'a' },
-        83: { noteName: 'd4', frequency: 293.7, keyName: 's' },
-        68: { noteName: 'e4', frequency: 329.6, keyName: 'd' },
+        83: { noteName: 'd4', frequency: 295.0, keyName: 's' },
+        68: { noteName: 'e4', frequency: 330.0, keyName: 'd' },
         70: { noteName: 'f4', frequency: 349.2, keyName: 'f' },
         71: { noteName: 'g4', frequency: 392, keyName: 'g' },
         72: { noteName: 'a4', frequency: 440, keyName: 'h' },
@@ -121,7 +121,7 @@
             sortedKeys.push(notes[keyCode]);
         }
 
-        /* Notas em ordem crescente */
+        // Notas em ordem crescente 
         sortedKeys = sortedKeys.sort(function(note1, note2) {
             if (note1.frequency < note2.frequency) return -1;
             if (note1.frequency > note2.frequency) return 1;
@@ -133,6 +133,7 @@
             document.getElementById(containerId).appendChild(sortedKeys[i].key.html);
         }
 
+        //Inicializa o som
         var playNote = function(event) {
             var keyCode = event.keyCode;
 
@@ -142,6 +143,7 @@
             }
         };
 
+        //Finaliza o som 
         var endNote = function(event) {
             var keyCode = event.keyCode;
 
@@ -151,6 +153,7 @@
             }
         };
 
+        //ALtera o formato da onda de acordo com a escolha do usuário
         var setWaveform = function(event) {
             for(var keyCode in notes) {
                 notes[keyCode].key.sound.osc.type = this.value;
