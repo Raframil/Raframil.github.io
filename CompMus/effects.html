@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<link href="https://fonts.googleapis.com/css?family=Audiowide|Barrio" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pizzicato/0.5.1/Pizzicato.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!-- Css Style -->
+<style>
+body {
+	background-color:#263238;
+	text-align: center;
+	margin: 0 auto;
+	position: relative;
+	font-family: 'Audiowide', cursive;
+}
+.float {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+p{
+	color:white;
+}
+
+.top-container {
+	color: #fff;
+	font-family: 'Audiowide', cursive;
+	width: 100%;
+	padding-top: 40px;
+	padding-bottom: 40px;
+	margin: 0 auto;
+	text-align: center;
+	margin-bottom: 40px;
+	border-bottom: 2px solid rgba(0, 0, 0, 1);
+	background-color: #006064;
+}
+
+.top-container h1 {
+	font-size: 28px;
+}
+
+.top-container h2 {
+	font-size: 14px;
+	font-weight: 100;
+	opacity: 0.6;
+}
+
+#canvas {
+	border: 2px solid black;
+	background-color: rgba(128, 128, 128, 0.16);
+}
+
+.section1{
+	float:left;
+	margin-left:20px;
+}
+
+input:disabled {
+  opacity: 0.1;
+}
+</style>
+</head>
+
+<body>
+  <div class="top-container">
+    <h1>FE</h1>
+    <h2>framil effects</h2>
+  </div>
+
+	<section class="section1">
+		<p>Biquad Filter</p>
+	  <p><input type="text" name="soundcloudmusic" value="https://soundcloud.com/crystal_knives/partymonster" style="width:350px">
+	  <br></p>
+
+	  <audio id="starboy" controls>
+
+	  </audio>
+
+	  <div id="controls">
+	    <p>
+	      <select id="filtersDropdown">
+	      </select>
+	    </p>
+	    <canvas id="canvas" width="400" height ="200"></canvas>
+	    <p>
+				<p>Frequencia<input id="frequencySlider" title="Frequency" type="range" min="0" max="2000" value="1000"></input></p>
+
+	      <p>Quality <input id="qSlider" title="Q" type="range" min="1" max="100" value="10" /> </p>
+
+	      <p><input id="gainSlider" type="hidden" title="Gain" disabled type="range" min="1" max="100" value="20" /></p>
+	    </p>
+	  </div>
+	</section>
+
+	<p>Reverb</p>
+
+
+
+	<div id="sliders">
+		<audio id="bla" src='audio/starboy.mp3' controls='true' loop="true">
+			Your browser doesn't support the audio element.
+		</audio>
+			<p> delayTime <input max='1' min='0' name='delayTime' step='0.05' type='range' value='0.5'/> </p>
+    	<p> feedback <input max='0.95' min='0' name='feedback' step='0.05' type='range' value='0.8'/> </p>
+    	<p> cutoff freq: <input max='4000' min='0' name='frequency' step='100' type='range' value='1000'/> </p>
+	</div>
+
+</body>
+</html>
+
+<script type="text/javascript">
+
+(function () {
+  var ctx = new AudioContext();
+  audioElement = document.getElementById("bla");
+	audioElement.crossOrigin = "anonymous";
+
+	var el = document.getElementById("sliders");
+
+		if (el){
+			console.log("AEAEAEAEA");
+		}else{
+			console.log("porra");
+		}
+  	audioElement.addEventListener('play', function(){
+    source = ctx.createMediaElementSource(audioElement);
+
+    delay = ctx.createDelay();
+    delay.delayTime.value = 0.5;
+
+    feedback = ctx.createGain();
+    feedback.gain.value = 0.8;
+
+    filter = ctx.createBiquadFilter();
+    filter.frequency.value = 1000;
+
+    delay.connect(feedback);
+    feedback.connect(filter);
+    filter.connect(delay);
+
+    source.connect(delay);
+    source.connect(ctx.destination);
+    delay.connect(ctx.destination);
+  });
+
+  var controls = $("sliders");
+
+  controls.find("input[name='delayTime']").on('input', function() {
+    delay.delayTime.value = $(this).val();
+  });
+
+  controls.find("input[name='feedback']").on('input', function() {
+    feedback.gain.value = $(this).val();
+  });
+
+  controls.find("input[name='frequency']").on('input', function() {
+    filter.frequency.value = $(this).val();
+  });
+})();
+
+</script>
+
+<script>
+(function() {
+  var AudioContext = window.AudioContext ||
+      window.webkitAudioContext;
+  var audioContext;
+  var biquadFilter;
+
+  var frequencySlider = document.getElementById("frequencySlider");
+  var qSlider = document.getElementById("qSlider");
+  var gainSlider = document.getElementById("gainSlider");
+
+  var audio;
+
+
+  // All Web Audio API filters
+  // https://developer.mozilla.org/en-US/docs/Web/API/BiquadFilterNode/type
+
+  var filters = { "lowpass": {
+      q: true,
+      gain: false
+    }, "highpass": {
+      q: true,
+      gain: false
+    }, "bandpass": {
+      q: true,
+      gain: false
+    }, "allpass": {
+      q: true,
+      gain: false
+    },
+  };
+
+  var canvas = document.getElementById("canvas");
+  var canvasContext = canvas.getContext("2d");
+
+  var frequencyBars = 100;
+
+	// Array contendo todas as frequencias necessarias
+  var myFrequencyArray = new Float32Array(frequencyBars);
+  for(var i = 0; i < frequencyBars; ++i) {
+    myFrequencyArray[i] = 2000/frequencyBars*(i+1);
+  }
+
+  // Pegamos os resultados nessas duas variáveis
+  // getFrequencyResponse()
+  var magResponseOutput = new Float32Array(frequencyBars); // magnitude
+  var phaseResponseOutput = new Float32Array(frequencyBars);
+
+  audioContext = new AudioContext();
+
+  window.addEventListener("load", function(e) {
+    audio = document.getElementById("starboy");
+    audio.crossOrigin = "anonymous";
+
+    var source = audioContext.createMediaElementSource(audio);
+
+    biquadFilter = audioContext.createBiquadFilter();
+    biquadFilter.type = "lowpass";
+    biquadFilter.frequency.value = 1000;
+    biquadFilter.Q.value = 10;
+    biquadFilter.gain.value = 20;
+
+    source.connect(biquadFilter);
+    biquadFilter.connect(audioContext.destination);
+
+    updateFrequencyResponse();
+  }, false);
+
+	// Desenha no canvas
+  function drawFrequencyResponse(mag, phase) {
+    canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+    var barWidth = 400 / frequencyBars;
+
+    // Magnitude
+    canvasContext.strokeStyle = "white";
+    canvasContext.beginPath();
+    for(var frequencyStep = 0; frequencyStep < frequencyBars; ++frequencyStep) {
+      canvasContext.lineTo(
+        frequencyStep * barWidth,
+        canvas.height - mag[frequencyStep]*90);
+    }
+    canvasContext.stroke();
+
+    // Phase
+    canvasContext.strokeStyle = "red";
+    canvasContext.beginPath();
+    for(var frequencyStep = 0; frequencyStep < frequencyBars; ++frequencyStep) {
+      canvasContext.lineTo(
+        frequencyStep * barWidth,
+        canvas.height - (phase[frequencyStep]*90 + 300)/Math.PI);
+    }
+    canvasContext.stroke();
+  }
+
+  function updateFrequencyResponse() {
+    biquadFilter.getFrequencyResponse(
+      myFrequencyArray,
+      magResponseOutput,
+      phaseResponseOutput);
+    drawFrequencyResponse(magResponseOutput, phaseResponseOutput);
+  }
+
+
+  frequencySlider.addEventListener("change", function () {
+    biquadFilter.frequency.value = this.value;
+  });
+
+  frequencySlider.addEventListener("mousemove", function () {
+    biquadFilter.frequency.value = this.value;
+    updateFrequencyResponse();
+  });
+
+  qSlider.addEventListener("mousemove", function () {
+    biquadFilter.Q.value = this.value;
+    updateFrequencyResponse();
+  });
+
+  gainSlider.addEventListener("mousemove", function () {
+    biquadFilter.gain.value = this.value;
+    updateFrequencyResponse();
+  });
+
+	// Filtros disponiveis no menu dropdown
+  var filtersDropdown = document.getElementById("filtersDropdown");
+
+  for(var item in filters) {
+    var option = document.createElement("option");
+    option.innerHTML = item;
+    filtersDropdown.appendChild(option);
+  };
+
+	// Verifica o filtro
+  function filterClicked (event) {
+    event = event || window.event;
+    var target = event.target || event.srcElement;
+    var filterName = target.value;
+    biquadFilter.type = filterName;
+    updateFrequencyResponse();
+    qSlider.disabled = !filters[filterName].q;
+    gainSlider.disabled = !filters[filterName].gain;
+  };
+  filtersDropdown.addEventListener("change", filterClicked, false);
+
+		////////////////////////////
+	  // Soundcloud stuff 			//
+	  ////////////////////////////
+
+	  function get(url, callback) {
+	    var request = new XMLHttpRequest();
+	    request.onreadystatechange = function() {
+	      if (request.readyState === 4 && request.status === 200) {
+	        callback(request.responseText);
+	      }
+	    }
+
+	    request.open("GET", url, true);
+	    request.send(null);
+	  }
+
+	  var clientParameter = "client_id=aae0cd3ce269784234bb78aa6d485394"
+
+		// Party Monster
+	  var trackPermalinkUrl = "https://soundcloud.com/jannina-weigel/starboy-the-weeknd-starboy-ft-daft-punk";
+
+	  function findTrack() {
+	    get("https://api.soundcloud.com/resolve.json?url=" + trackPermalinkUrl + "&" + clientParameter,
+	      function (response) {
+	        var trackInfo = JSON.parse(response);
+	        audio.src = trackInfo.stream_url + "?" + clientParameter;
+	      }
+	    );
+	  };
+
+	  findTrack();
+
+})();
+
+
+</script>
