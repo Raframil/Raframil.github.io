@@ -147,6 +147,9 @@ input:disabled {
     delay.delayTime.value = $(this).val();
   });
 
+	controls.find("input[name='feedback']").on('input', function() {
+    feedback.gain.value = $(this).val();
+  });
 
   controls.find("input[name='frequency']").on('input', function() {
     filter.frequency.value = $(this).val();
